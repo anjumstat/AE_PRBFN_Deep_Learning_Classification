@@ -1,4 +1,19 @@
 # AE_PRBFN_Deep_Learning_Classification
+## Scripts
+
+This repository contains the following scripts, designed to be run sequentially:
+
+1.  **`01_CDS_Validation_Pipeline.py`**: Filters raw CDS FASTA files from Ensembl Plants based on strict biological criteria.
+2.  **`02_Create_Codon_Frequency_Table.py`**: Generates a machine-learning-ready CSV file of absolute codon frequencies for each gene sequence.
+3.  **`03_PCA_RSCU.py`**: Generates **Figure 1** from the manuscript: a PCA plot visualizing species separability.
+4.  **`04_PCA_UMAP.py`**: Generates **Figure 3** from the manuscript: a comparative visualization of PCA and UMAP.
+5.  **`05_AE_RBFN.py`**: Implements, trains, and evaluates the novel Attention-Enhanced Radial Basis Function Network (AE-RBFN).
+6.  **`06_Standard_RBFN.py`**: Implements, trains, and evaluates the standard RBFN baseline model.
+7.  **`07_Plot_Training_History.py`**: Generates **Figure 4** from the manuscript: the training/validation accuracy and loss curves.
+8.  **`08_Plot_Attention_Heatmap.py`**: Generates **Figure 5** from the manuscript: the heatmap of species-specific codon attention weights.
+9.  **`09_Top_Attention_Codons.py`**: Generates the data for **Table 2** from the manuscript: the top 10 codons with the highest attention weights.
+10. **`10_Overfitting_Analysis.py`**: Generates **Figure 6** from the manuscript: a comprehensive, multi-panel visualization diagnosing overfitting for the Standard RBFN model through 10-fold cross-validation.
+
 ### 1. Genomic Data Processing Pipeline: From Raw CDS to Curated Datasets
 
 This repository contains a pipeline for downloading and rigorously curating Coding DNA Sequence (CDS) data from Ensembl Plants for use in genomic studies and machine learning projects.
