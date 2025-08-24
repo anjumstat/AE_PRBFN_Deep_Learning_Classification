@@ -337,3 +337,15 @@ This ensures both models are trained and evaluated on the exact same dataset.
     ```bash
     python Scripts/10_Overfitting_Analysis.py
     ```
+### **Processed Data**
+The main dataset (4_Species_gene1.csv) has been split into three parts due to GitHub file size limitations for browser uploads. You must reassemble it into a single file before running any of the analysis or model training scripts.
+
+**To recreate the complete dataset:**
+
+Download all three files from the Split_Data directory: 4_Species_gene1_part_1.csv, 4_Species_gene1_part_2.csv, and 4_Species_gene1_part_3.csv.
+
+Use a data analysis tool (like Python with Pandas) to concatenate these three files row-wise.
+
+Save the combined data as 4_Species_gene1.csv in the main project directory.
+
+The scripts are configured to read from this single file name. Without completing this step, the code will not run.
