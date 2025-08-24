@@ -141,6 +141,44 @@ This end-to-end pipeline is designed for:
     ```bash
     python Scripts/04_PCA_UMAP.py
     ```
+### **05_AE_RBFN.py**
+
+**Purpose:** This is the primary script for the manuscript, implementing the novel **Attention-Enhanced Radial Basis Function Network (AE-RBFN)**. It conducts the full model training, evaluation, and results generation pipeline for the proposed architecture.
+
+**Important Preprocessing Note:** Before running this script, the input CSV file (`4_Species1.csv`) must be prepared as follows:
+1.  **Remove the `Sequence_ID` column.**
+2.  **Remove the original `Species` (text) column.**
+3.  **Rename the `Label` column (containing integer class IDs) to `Species`.**
+This ensures the dataset contains only the 64 codon frequency features and a single target column named `Species` for the model.
+
+**Key Components and Operations:**
+*   **Novel Architecture Implementation:** Defines the custom TensorFlow/Keras model comprising:
+    *   `PhylogeneticKMeans`: For intelligent centroid initialization.
+    *   `CodonGammaRBFLayer`: A custom RBF layer with trainable, codon-specific gamma parameters.
+    *   `SpeciesAttention`: The key innovation—an attention mechanism that learns species-specific codon importance.
+*   **Rigorous Evaluation:** Employs a **10-fold cross-validation** protocol to ensure robust and generalizable performance metrics.
+*   **Comprehensive Output:** The script automatically saves:
+    *   **Model Histories:** Full training/validation accuracy and loss for each fold (`all_histories.npy`).
+    *   **Model Weights:** Trained weights for each fold.
+    *   **Performance Metrics:** Detailed CSV files with overall and class-wise accuracy, precision, recall, F1-score, and Matthews Correlation Coefficient (MCC).
+    *   **Attention Heatmaps:** The learned attention weights, which form the basis for **Figure 5** in the manuscript, providing model interpretability.
+    *   **Visualizations:** Accuracy/Loss curves and a confusion matrix.
+
+**Input:**
+- The preprocessed codon frequency dataset (`4_Species1.csv`), containing only the 64 codon features and an integer `Species` target column.
+
+**Output:**
+- All results, figures, and model data are saved to the specified output directory for further analysis and plotting.
+
+**Key Libraries:** `tensorflow`, `keras`, `scikit-learn`, `numpy`, `pandas`, `matplotlib`, `seaborn`
+
+**Usage:**
+1.  **Preprocess the data** as described above.
+2.  Configure the `data_path` and `output_dir` variables in the script.
+3.  Run the script (Note: This is computationally intensive and will take time):
+    ```bash
+    python Scripts/05_AE_RBFN.py
+    ```    
 ### **05_Plot_Training_History.py**
 
 **Purpose:** Visualizes the learning process of the trained Standard RBFN model by plotting accuracy and loss curves across training epochs. This script generated **Figure 4** in the associated manuscript. The figure is critical for diagnosing model behavior, confirming successful convergence, and validating that no overfitting occurred.
