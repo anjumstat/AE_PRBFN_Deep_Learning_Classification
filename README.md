@@ -178,8 +178,43 @@ This ensures the dataset contains only the 64 codon frequency features and a sin
 3.  Run the script (Note: This is computationally intensive and will take time):
     ```bash
     python Scripts/05_AE_RBFN.py
+    ```
+### **06_Standard_RBFN.py**
+
+**Purpose:** This script implements and evaluates a **Standard Radial Basis Function Network (RBFN)** to serve as a performance baseline for comparing against the novel AE-RBFN model. It follows an identical training and evaluation protocol to ensure a fair comparison.
+
+**Important Preprocessing Note:** The input CSV file (`4_Species1.csv`) must be preprocessed identically to the AE-RBFN script:
+1.  **Remove the `Sequence_ID` column.**
+2.  **Remove the original `Species` (text) column.**
+3.  **Rename the `Label` column (containing integer class IDs) to `Species`.**
+This ensures both models are trained and evaluated on the exact same dataset.
+
+**Key Components and Operations:**
+*   **Baseline Architecture Implementation:** Defines a standard TensorFlow/Keras model comprising:
+    *   `StandardRBFLayer`: A custom RBF layer with **fixed centroids** (initialized via K-Means on the training data) and a **fixed gamma parameter**.
+    *   A simple `Dense` output layer with softmax activation.
+*   **Identical Evaluation Protocol:** Employs the same **10-fold cross-validation** and train/test split as the AE-RBFN model to guarantee a fair and reproducible comparison.
+*   **Comprehensive Output:** The script saves an identical set of outputs for direct comparison:
+    *   **Model Histories:** Full training/validation accuracy and loss for each fold (`all_histories.npy`).
+    *   **Performance Metrics:** Detailed CSV files with overall and class-wise metrics (accuracy, precision, recall, F1, MCC).
+    *   **Visualizations:** Accuracy/Loss curves and a confusion matrix.
+
+**Input:**
+- The preprocessed codon frequency dataset (`4_Species1.csv`), containing only the 64 codon features and an integer `Species` target column.
+
+**Output:**
+- All results, figures, and model data are saved to a separate output directory (`RBFN_Standard_new1/`) for clear comparison with the AE-RBFN results.
+
+**Key Libraries:** `tensorflow`, `keras`, `scikit-learn`, `numpy`, `pandas`, `matplotlib`, `seaborn`
+
+**Usage:**
+1.  **Preprocess the data** identically to the AE-RBFN script (see note above).
+2.  Configure the `data_path` and `output_dir` variables in the script's `CONFIG` dictionary.
+3.  Run the script:
+    ```bash
+    python Scripts/06_Standard_RBFN.py
     ```    
-### **05_Plot_Training_History.py**
+### **07_Plot_Training_History.py**
 
 **Purpose:** Visualizes the learning process of the trained Standard RBFN model by plotting accuracy and loss curves across training epochs. This script generated **Figure 4** in the associated manuscript. The figure is critical for diagnosing model behavior, confirming successful convergence, and validating that no overfitting occurred.
 
