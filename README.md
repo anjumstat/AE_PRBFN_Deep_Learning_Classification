@@ -140,7 +140,7 @@ This end-to-end pipeline is designed for:
 3.  Run the script:
     ```bash
     python Scripts/04_PCA_UMAP.py
-```
+    ```
 ### **05_Plot_Training_History.py**
 
 **Purpose:** Visualizes the learning process of the trained Standard RBFN model by plotting accuracy and loss curves across training epochs. This script generated **Figure 4** in the associated manuscript. The figure is critical for diagnosing model behavior, confirming successful convergence, and validating that no overfitting occurred.
