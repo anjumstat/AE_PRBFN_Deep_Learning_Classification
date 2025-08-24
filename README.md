@@ -140,4 +140,24 @@ This end-to-end pipeline is designed for:
 3.  Run the script:
     ```bash
     python Scripts/04_PCA_UMAP.py
+```
+### **05_Plot_Training_History.py**
+
+**Purpose:** Visualizes the learning process of the trained Standard RBFN model by plotting accuracy and loss curves across training epochs. This script generated **Figure 4** in the associated manuscript. The figure is critical for diagnosing model behavior, confirming successful convergence, and validating that no overfitting occurred.
+
+**What it does:**
+*   **Input:** Loads the training history data (`all_histories.npy`) saved during the 10-fold cross-validation process for the Standard RBFN model.
+*   **Processing:** Averages the accuracy and loss trajectories from all 10 folds to create a single, representative learning curve.
+*   **Output:** Produces a publication-quality, two-panel figure:
+    *   **Left Panel:** Training vs. Validation Accuracy per epoch.
+    *   **Right Panel:** Training vs. Validation Loss per epoch.
+*   **Interpretation:** Close convergence of the training and validation lines indicates the model learned generalizable patterns without memorizing the training data (overfitting).
+
+**Key Libraries:** `numpy`, `matplotlib`
+
+**Usage:**
+1.  Ensure the path to the `all_histories.npy` file is correct in the script.
+2.  Run the script:
+    ```bash
+    python Scripts/05_Plot_Training_History.py
     ```
