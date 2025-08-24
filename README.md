@@ -120,3 +120,24 @@ This end-to-end pipeline is designed for:
     ```
 
 **Interpretation:** The resulting plot visually demonstrates the underlying structure in the data. Distinct clusters for each species provide a strong rationale for proceeding with classification models, as they indicate that codon usage is a species-specific signature.
+### **04_PCA_UMAP.py**
+
+**Purpose:** Creates a side-by-side comparative visualization of PCA and UMAP projections of the codon usage data. This script generated **Figure 3** in the associated manuscript. The figure provides a powerful visual argument for the feasibility of the classification task by showing clear species clusters in a reduced dimension.
+
+**What it does:**
+*   **Input:** Loads the codon frequency dataset (e.g., `4_Species_gene.csv`).
+*   **Preprocessing:** Normalizes codon counts to relative frequencies per gene and standardizes the features.
+*   **Dimensionality Reduction:** Applies two distinct techniques:
+    *   **PCA (Linear):** Finds the orthogonal directions of maximum variance in the data.
+    *   **UMAP (Non-linear):** A manifold learning technique that often preserves more complex, non-linear cluster structures.
+*   **Output:** Produces a publication-quality, two-panel figure contrasting the two techniques. This allows for a robust assessment of the inherent clusterability of the species based on their codon usage patterns.
+
+**Key Libraries:** `pandas`, `numpy`, `matplotlib`, `seaborn`, `scikit-learn`, `umap-learn`
+
+**Usage:**
+1.  Install the required UMAP library: `pip install umap-learn`
+2.  Ensure the input CSV file path is correct in the script.
+3.  Run the script:
+    ```bash
+    python Scripts/04_PCA_UMAP.py
+    ```
